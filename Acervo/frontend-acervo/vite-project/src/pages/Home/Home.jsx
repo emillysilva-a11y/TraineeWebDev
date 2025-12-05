@@ -4,7 +4,9 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Container, Header, CarouselWrapper, TableWrapper } from './Styles'; 
-import LoginModal from '../Login/LoginModal';
+import LoginModal from './LoginModal';
+import ImagemBranco from '../../assets/imagemembranco.svg'; 
+import ImagemLilas from '../../assets/imagemlilas.svg';
 import LogoCPE from '../../assets/logocpe.svg'; 
 
 const memberData = [
@@ -40,12 +42,12 @@ const Home = () => {
                         infiniteLoop={true}
                     >
                         <div className="carousel-slide">
-                            <img src="/assets/slide1.png" alt="Informação da Empresa 1" />
-                            <p className="legend">Slide 1: Nossa Missão</p>
+                            <img src={ImagemBranco} alt='' />
+                            <p className="legend"></p>
                         </div>
                         <div className="carousel-slide">
-                            <img src="/assets/slide2.png" alt="Informação da Empresa 2" />
-                            <p className="legend">Slide 2: Nossos Valores</p>
+                            <img src={ImagemLilas} alt=''/>
+                            <p className="legend"></p>
                         </div>
                     </Carousel>
                 </CarouselWrapper>

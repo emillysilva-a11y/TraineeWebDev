@@ -2,6 +2,7 @@ import React from 'react';
 import LogoCPE from '../../assets/logocpe.svg';
 import { Input, Button } from 'antd';
 import { Container, Header, Title, FormWrapper } from './Styles'; 
+import { registerUser } from '../../../src/api';
 
 const Cadastro = () => {
     return (

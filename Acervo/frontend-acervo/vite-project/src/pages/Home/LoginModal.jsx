@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Modal, Button } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';

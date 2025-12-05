@@ -19,17 +19,14 @@ export const Header = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     .cpe-logo-img{
         max-width: 150px;
         height: auto;
     }
-    
     .header-nav {
         display: flex;
         gap: 20px;
     }
-    
     .nav-link {
         color: black;
         text-decoration: none;
@@ -59,45 +56,102 @@ export const Header = styled.header`
 export const CarouselWrapper = styled.div`
     width: 100%;
     max-width: 600px; 
-    margin: 40px auto;
+    margin: 20px auto;
+    .carousel-root {
+        position: relative;
+    }
+    .carousel {
+        position: relative;
+        overflow: visible;
+        height: 200px;
+        max-height: 200px;
+    }
+    .carousel .slide {
+        background: white; 
+        height: 200px; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        padding: 10px; 
+        border: 1px solid black;
+    }
+    .carousel .slide img {
+        width: 100%; 
+        max-height: 100%;
+        object-fit: contain;
+    }
 
     .carousel .slide .legend {
         background: rgba(0, 0, 0, 0.7);
         color: white;
         padding: 10px;
         font-size: 14px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
     }
-
+    .carousel .slide-status {
+        display: none;
+    }
+    .carousel .control-dots {
+        position: absolute;
+        bottom: -20px; 
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        padding: 0;
+    }
     .carousel .control-arrow {
+        position: absolute;
+        z-index: 20;
         opacity: 1;
         background: none;
-    }
-
-    .carousel .control-arrow::before {
-        border-color: rgba(255, 231, 18, 1);
-        border-width: 0 10px 10px 0;
-    }
-
-    .carousel .control-prev.control-arrow::before {
-        border-color: transparent rgba(255, 231, 18, 1) transparent transparent; 
-    }
-
-    .carousel .control-next.control-arrow::before {
-        border-color: transparent transparent transparent rgba(255, 231, 18, 1);
-    }
-    .carousel .control-arrow {
         top: 50%;
         transform: translateY(-50%);
-        padding: 20px;
+        padding: 0;
+        width: 40px; 
+        height: 40px; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .carousel .control-arrow::before {
+        display: none;
+    }
+    .carousel .control-prev.control-arrow {
+        left: -50px;
+    }
+    .carousel .control-next.control-arrow {
+        right: -50px;
+    }
+    .carousel .control-prev.control-arrow:before {
+        content: ''; 
+        display: block;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 20px 20px 20px 0;
+        border-color: transparent #FFE712 transparent transparent; 
+        margin-left: -5px; 
+    }
+    .carousel .control-next.control-arrow:before {
+        content: ''; 
+        display: block;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 20px 0 20px 20px; 
+        border-color: transparent transparent transparent #FFE712;
+        margin-right: -5px; 
     }
 `;
 
 export const TableWrapper = styled.div`
     width: 100%;
     max-width: 600px; 
-    margin: 20px auto;
+    margin: 40px auto 20px auto; 
     color: white; 
-    
     .table-header {
         display: grid;
         grid-template-columns: 2fr 1fr 1fr 0.5fr;
@@ -109,8 +163,7 @@ export const TableWrapper = styled.div`
         font-size: 14px;
         text-transform: uppercase;
         margin-top: 20px;
-    }
-    
+    } 
     .table-row {
         display: grid;
         grid-template-columns: 2fr 1fr 1fr 0.5fr;
@@ -118,17 +171,14 @@ export const TableWrapper = styled.div`
         padding: 10px 15px;
         border-bottom: 1px solid #333;
         font-size: 14px;
-    }
-    
+    } 
     .member-info {
         display: flex;
         flex-direction: column;
-    }
-    
+    } 
     .member-name {
         font-weight: bold;
     }
-    
     .time-block {
         background-color: #FFE712;
         color: black;
@@ -138,7 +188,6 @@ export const TableWrapper = styled.div`
         font-weight: bold;
         width: 80%;
     }
-    
     .delete-icon {
         color: gray;
         cursor: pointer;
@@ -146,20 +195,16 @@ export const TableWrapper = styled.div`
         text-align: center;
         transition: color 0.2s;
     }
-
     .delete-icon:hover {
         color: red;
     }
-    
     @media (max-width: ${RESPONSIVE_BREAKPOINT_SM}) {
         max-width: 95%;
         font-size: 12px;
-        
         .table-header, .table-row {
             grid-template-columns: 1.5fr 1fr 1fr 0.5fr;
             padding: 8px 10px;
         }
-
         .time-block {
             padding: 3px 5px;
             font-size: 11px;
