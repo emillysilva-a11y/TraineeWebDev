@@ -29,7 +29,7 @@ const Cadastro = () => {
                 />
                 
                 <p className="login-link">
-                    Já tem uma conta? Faça o login <a href="/login">aqui</a>.
+                    Já tem uma conta? Faça o login <a href="/">aqui</a>.
                 </p>
 
                 <div className="criar-conta-btn-margin">

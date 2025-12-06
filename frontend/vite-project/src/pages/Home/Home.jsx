@@ -39,14 +39,15 @@ const Home = () => {
                     <Carousel 
                         showArrows={true}
                         showThumbs={false}
+                        showStatus={false}
                         infiniteLoop={true}
                     >
                         <div className="carousel-slide">
-                            <img src={ImagemBranco} alt='' />
+                            <img src="" alt='' />
                             <p className="legend"></p>
                         </div>
                         <div className="carousel-slide">
-                            <img src={ImagemLilas} alt=''/>
+                            <img src="" alt=''/>
                             <p className="legend"></p>
                         </div>
                     </Carousel>
