@@ -6,12 +6,15 @@ class UsuarioController {
     async create(req, res){
         try {
         
-        const{ senha, ...userData } = req.body;
+        const{nome, cargo, email, senha, ...userData } = req.body;
 
         const hashedpassword = await AuthController.hashsenha(senha);
 
         const usuario = await UsuarioModel.create({
             ...userData,
+            nome,
+            cargo,
+            email,
             senha: hashedpassword
         });
 
@@ -59,16 +62,15 @@ class UsuarioController {
         const { id } = req.params;
 
         if (req.body.senha){
-
-        req.body.senha = await AuthController.hashsenha(req.body.senha);}
+            req.body.senha = await AuthController.hashsenha(req.body.senha);}
 
         const usuariosAtualizado = await UsuarioModel.findByIdAndUpdate(id, req.body, { new:true, runValidators: true });
 
         if (!usuariosAtualizado) return res.status(404).json({ message: "Usuário não encontrado!" });
 
-        const { senha, ...usuarioAtualizado} = usuario.toObject();
+        const { senha, ...usuarioLimpo} = usuarioAtualizado.toObject();
 
-        res.status(200).json(usuarioAtualizado)
+        res.status(200).json(usuarioLimpo)
         } catch (error) {
             res.status(500).json({message: "Erro ao tentar atualizar o usuário", error: error.message })
         }
@@ -80,8 +82,6 @@ class UsuarioController {
 
         const usuariosDeletado = await UsuarioModel.findByIdAndDelete(id); 
         if (!usuariosDeletado) return res.status(404).json({ message: "Usuário não encontrado!" });
-
-        await usuariosDeletado.deleteOne();
 
         res.status(200).json({ "mensagem": "Usuario deletado com sucesso!"});
         } catch (error) {

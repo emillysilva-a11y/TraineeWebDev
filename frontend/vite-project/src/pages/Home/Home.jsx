@@ -1,13 +1,10 @@
 import React, {useState}from 'react';
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { Container, Header, CarouselWrapper, TableWrapper } from './Styles'; 
+import { Container, Header, TableWrapper } from './Styles'; 
 import LoginModal from './LoginModal';
-import ImagemBranco from '../../assets/imagemembranco.svg'; 
-import ImagemLilas from '../../assets/imagemlilas.svg';
-import LogoCPE from '../../assets/logocpe.svg'; 
+import LogoCPE from '../../assets/logocpe.svg';
+import Carousel from '../../components/Carousel/Carousel';
 
 const memberData = [
     { id: 1, name: "Mariana Rafaela", role: "Gerente de Recrutamento e Seleção", checkIn: "22:34", timeSpent: "01:34" },
@@ -35,23 +32,8 @@ const Home = () => {
             </Header>
 
             <div className="home-content">
-                <CarouselWrapper>
-                    <Carousel 
-                        showArrows={true}
-                        showThumbs={false}
-                        showStatus={false}
-                        infiniteLoop={true}
-                    >
-                        <div className="carousel-slide">
-                            <img src="" alt='' />
-                            <p className="legend"></p>
-                        </div>
-                        <div className="carousel-slide">
-                            <img src="" alt=''/>
-                            <p className="legend"></p>
-                        </div>
-                    </Carousel>
-                </CarouselWrapper>
+
+                <Carousel />
                 
                 <TableWrapper>
                     <div className="table-header">

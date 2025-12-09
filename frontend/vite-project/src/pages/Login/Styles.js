@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Input, Button } from 'antd'; 
+import { Button } from 'antd'; 
 
 const RESPONSIVE_BREAKPOINT_SM = "280px";
 
@@ -74,45 +74,6 @@ export const FormWrapper = styled.div`
     @media (max-width: ${RESPONSIVE_BREAKPOINT_SM}) {
         padding: 10px;
         max-width: 100%;
-    }
-`;
-
-const inputStyles = `
-    border-radius: 8px ;
-    height: 50px ;
-    margin-bottom: 20px;
-    box-shadow: none;
-
-    .ant-input {
-        background-color: white;
-        color: black;
-        height: 50px;
-        border-radius: 8px;
-        padding-left: 15px;
-    }
-
-    .ant-input::placeholder {
-        color: #777;
-    }
-
-    @media (max-width: ${RESPONSIVE_BREAKPOINT_SM}) {
-        height: 40px;
-        .ant-input {
-            height: 40px;
-            font-size: 14px;
-        }
-    }
-`;
-
-export const CustomInput = styled(Input)`
-    ${inputStyles}
-`;
-
-export const CustomPassword = styled(Input.Password)`
-    ${inputStyles}
-
-    .ant-input-suffix {
-        color: black; 
     }
 `;
 

@@ -18,7 +18,7 @@ const UsuariosSchema = new Schema ({
         required: true,
         unique: true,
     },
-    cargo : String,
+    cargo : { type: String, default: 'Comum'},
     status : String
 });
 

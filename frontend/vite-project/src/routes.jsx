@@ -14,8 +14,8 @@ function App() {
     <>
     <GlobalStyle />
     <Routes>
-      <Route path="/" element={<Login/>}/>
-      <Route path="/home" element={<Home />} />
+      <Route path="/" element={<Home/>}/>
+      <Route path="/login" element={<Login />} />
       <Route path="/cadastro" element={<Cadastro />} /> 
       <Route path="/usuarios" element={<Usuarios/>} />
       <Route path="/projetos" element={<ProjetosPage />} />
