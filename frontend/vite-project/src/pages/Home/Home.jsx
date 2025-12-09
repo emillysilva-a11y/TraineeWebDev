@@ -7,9 +7,9 @@ import LogoCPE from '../../assets/logocpe.svg';
 import Carousel from '../../components/Carousel/Carousel';
 
 const memberData = [
-    { id: 1, name: "Mariana Rafaela", role: "Gerente de Recrutamento e Seleção", checkIn: "22:34", timeSpent: "01:34" },
-    { id: 2, name: "Osvaldo Neto", role: "Dev Lider", checkIn: "22:36", timeSpent: "01:34" },
-    { id: 3, name: "João Pirajá", role: "Dev Lider", checkIn: "22:36", timeSpent: "01:34" },
+    { id: 1, name: "Membro 1", role: "Consultor", checkIn: "20:00", timeSpent: "02:15" },
+    { id: 2, name: "Membro 2", role: "Dev Lider", checkIn: "19:00", timeSpent: "01:43" },
+    { id: 3, name: "Membro 3", role: "Dev Lider", checkIn: "20:30", timeSpent: "00:55" },
 ];
 
 const Home = () => {
