@@ -64,9 +64,9 @@ class UsuarioController {
         if (req.body.senha){
             req.body.senha = await AuthController.hashsenha(req.body.senha);}
 
-        const usuariosAtualizado = await UsuarioModel.findByIdAndUpdate(id, req.body, { new:true, runValidators: true });
+        const usuarioAtualizado = await UsuarioModel.findByIdAndUpdate(id, req.body, { new:true, runValidators: true });
 
-        if (!usuariosAtualizado) return res.status(404).json({ message: "Usuário não encontrado!" });
+        if (!usuarioAtualizado) return res.status(404).json({ message: "Usuário não encontrado!" });
 
         const { senha, ...usuarioLimpo} = usuarioAtualizado.toObject();
 

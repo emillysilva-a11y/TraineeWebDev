@@ -7,6 +7,7 @@ function verificarUsuario(req, res, next){
         return res.status(403).json({ message:"Operação não autorizada."})
     }
 
+
     if(req.usuarioId !== usuarioId) return res.status(401).json({ message: "Operação não autorizada" });
 
     next();
