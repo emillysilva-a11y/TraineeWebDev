@@ -1,30 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Container, Header, UsersHeader, UsersContent, SearchBar, TableWrapper } from './Styles'; 
 import LogoCPE from '../../assets/logocpe.svg'; 
 
-const initialUsersData = [
-    { id: 1, name: "Usuário 1", role: "Dev Lider", access: "Administrador" },
-    { id: 2, name: "Usuário 2", role: "Presidente", access: "Comum" },
-    { id: 3, name: "Usuário 3", role: "Consultor de tecnologia", access: "Comum" },
-];
+const API_URL = 'http://localhost:2000/usuarios'
 
 const Users = () => {
-    const [users, setUsers] = useState(initialUsersData);
+    const [users, setUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
 
+    const fetchUsers = async () =>{
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.get(API_URL, {
+            headers: {Authorization: `Bearer ${token}`}
+        });
+            setUsers(response.data);
+        } catch (error) {
+            console.error("Erro ao carregar usuários", error)
+        }
+    };
+    useEffect(() => {
+        fetchUsers();
+    }, []);
+
+    const handleDelete = async (id) => {
+        if(window.confirm("Tem certeza que deseja exluir esse usuário?")){
+            try {
+                const token = localStorage.getItem('token');
+                await axios.delete(`${API_URL}/${id}`,{
+                headers: { Authorization: `Bearer ${token}`}});
+                setUsers(users.filter(user => user._id !== id));  
+                alert("Usuário excluído com sucesso!");  
+            } catch (error) {
+                alert("Erro ao excluir Usuário.");
+            }
+        }
+    };
+ 
     const handleAccessChange = (id, newAccess) => {
         setUsers(users.map(user => 
             user.id === id ? { ...user, access: newAccess } : user
         ));
     };
 
-    const filteredUsers = users.filter(user =>
-        user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.role.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
+   const filteredUsers = users.filter(user => {
+        const nome = user.nome ? user.nome.toLowerCase() : "";
+        const cargo = user.cargo ? user.cargo.toLowerCase() : "";
+        const busca = searchTerm.toLowerCase();
+        return nome.includes(busca) || cargo.includes(busca);
+    });
     return (
         <Container>
             <Header>
@@ -42,7 +69,6 @@ const Users = () => {
             </UsersHeader>
             
             <UsersContent>
-                {/* Campo de Pesquisa */}
                 <SearchBar>
                     <FontAwesomeIcon icon={faSearch} />
                     <input 
@@ -57,14 +83,14 @@ const Users = () => {
                     <div className="table-header">
                         <span>Nome</span>
                         <span>Cargo</span>
-                        <span>Usuário</span> {/* Nível de Acesso */}
+                        <span>Usuário</span> 
                         <span></span>
                     </div>
 
                     {filteredUsers.map(user => (
-                        <div key={user.id} className="table-row">
-                            <span>{user.name}</span>
-                            <span>{user.role}</span>
+                        <div key={user._id} className="table-row">
+                            <span>{user.nome}</span>
+                            <span>{user.cargo}</span>
                             
                             <div className="access-select-wrapper">
                                 <select
@@ -77,7 +103,9 @@ const Users = () => {
                             </div>
 
                             <div className="actions">
-                                <FontAwesomeIcon icon={faTrash} className="delete-icon" title="Excluir" />
+                                <FontAwesomeIcon icon={faTrash} className="delete-icon" title="Excluir" 
+                                onClick={() => handleDelete(user._id)}
+                                style={{ cursor: 'pointer' }}/>
                             </div>
                         </div>
                     ))}

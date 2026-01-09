@@ -3,7 +3,7 @@ import axios from 'axios';
 import LogoCPE from '../../assets/logocpe.svg';
 import { Input, Button } from 'antd';
 import { Container, Header, Title, FormWrapper } from './Styles'; 
-import { registerUser } from '../../../src/api';
+import { registerUser } from '../../services/api';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
